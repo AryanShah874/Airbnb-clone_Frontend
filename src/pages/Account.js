@@ -19,7 +19,7 @@ function Account(){
     }
 
     const handleClick=async()=>{
-        const response=await fetch("https://airbnb-clone-backend-8i7m.onrender.com/logout", {
+        const response=await fetch("http://localhost:5000/logout", {
             method: "GET",
             credentials: "include"
         });

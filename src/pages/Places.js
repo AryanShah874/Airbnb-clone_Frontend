@@ -10,7 +10,7 @@ function Places(){
     const [loading, setLoading]=useState(false);
 
     useEffect(()=>{
-        fetch("https://airbnb-clone-backend-8i7m.onrender.com/places", {
+        fetch("http://localhost:5000/places", {
             method: 'GET',
             credentials: 'include'
         })
@@ -40,7 +40,7 @@ function Places(){
 
                             <div className="h-32 w-32 bg-gray-300 shrink-0">
                                 {place.photos.length>0 && (
-                                    <img src={"https://airbnb-clone-backend-8i7m.onrender.com/"+place.photos[0]} alt="main" className="h-full w-full"/>
+                                    <img src={"http://localhost:5000/"+place.photos[0]} alt="main" className="h-full w-full"/>
                                 )}
                             </div>
 

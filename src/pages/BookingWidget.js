@@ -37,7 +37,7 @@ function BookingWidget(props){
         booking.placeId=props.place._id;
         booking.price=nights*props.place.price;
 
-        const response=await fetch("https://airbnb-clone-backend-8i7m.onrender.com/bookPlace",{
+        const response=await fetch("http://localhost:5000/bookPlace",{
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

@@ -13,7 +13,7 @@ function Register(){
     const handleSubmit=async(event)=>{
         event.preventDefault();
 
-        const response = await fetch("https://airbnb-clone-backend-8i7m.onrender.com/register", {
+        const response = await fetch("http://localhost:5000/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function Register(){
     }
 
     const handleClick=()=>{
-        window.location.href = 'https://airbnb-clone-backend-8i7m.onrender.com/auth/google';
+        window.location.href = "http://localhost:5000/auth/google";
     }
 
     return(

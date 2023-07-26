@@ -6,7 +6,7 @@ function Search() {
 
     const [filters, setFilters]=useState({place: '', checkIn: '', checkOut: '', guests: ''});
 
-    const {filter, setFilter}=useContext(FilterContext);
+    const {setFilter}=useContext(FilterContext);
 
     const handleChange=(event)=>{
         if(event.target.name==='place'){

@@ -12,7 +12,7 @@ function Home(){
     const {filter}=useContext(FilterContext);
 
     useEffect(()=>{
-        fetch("https://airbnb-clone-backend-8i7m.onrender.com/allPlaces", {
+        fetch("http://localhost:5000/allPlaces" , {
             method: 'GET'
         })
         .then((response)=>{return response.json()})
@@ -49,7 +49,7 @@ function Home(){
 
                         <div className="bg-gray-500 rounded-2xl mb-2">
                             {place.photos?.[0] && (                     //.? => means it may or may not exists.
-                                <img src={"https://airbnb-clone-backend-8i7m.onrender.com/"+place.photos?.[0]} alt={"photo "+index} className="h-full w-full aspect-square object-cover rounded-2xl"/>
+                                <img src={"http://localhost:5000/"+place.photos?.[0]} alt={"photo "+index} className="h-full w-full aspect-square object-cover rounded-2xl"/>
                             )}
                         </div>
                         

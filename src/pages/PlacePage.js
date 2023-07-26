@@ -26,7 +26,7 @@ function PlacePage(){
     const [loading, setLoading]=useState(false);
 
     useEffect(()=>{
-        fetch(`https://airbnb-clone-backend-8i7m.onrender.com/places/${id}`, {
+        fetch(`http://localhost:5000/places/${id}`, {
             method: 'GET'
         })
         .then((response)=>{return response.json()})
@@ -49,7 +49,7 @@ function PlacePage(){
                     {place?.photos?.length>0 && (
                         place.photos.map((photo, index)=>{
                             return(
-                                <img src={"https://airbnb-clone-backend-8i7m.onrender.com/"+photo} alt={"photo "+index} className="h-96 w-2/3 m-auto"/>
+                                <img src={"http://localhost:5000/"+photo} alt={"photo "+index} className="h-96 w-2/3 m-auto"/>
                             ); 
                         })
                     )}
@@ -68,16 +68,16 @@ function PlacePage(){
 
                     <div>
                         {place.photos?.[0] && (
-                            <img className="rounded-l-2xl h-full w-full" src={"https://airbnb-clone-backend-8i7m.onrender.com/"+place.photos?.[0]} alt="main" />
+                            <img className="rounded-l-2xl h-full w-full" src={"http://localhost:5000/"+place.photos?.[0]} alt="main" />
                         )}
                     </div>
 
                     <div className="grid gap-4">
                         {place.photos?.[1] && (
-                            <img className="h-72 w-full rounded-tr-2xl" src={"https://airbnb-clone-backend-8i7m.onrender.com/"+place.photos?.[1]} alt="img-1" />
+                            <img className="h-72 w-full rounded-tr-2xl" src={"http://localhost:5000/"+place.photos?.[1]} alt="img-1" />
                         )}
                         {place.photos?.[2] && (
-                            <img className="h-72 w-full rounded-br-2xl" src={"https://airbnb-clone-backend-8i7m.onrender.com/"+place.photos?.[2]} alt="img-2" />
+                            <img className="h-72 w-full rounded-br-2xl" src={"http://localhost:5000/"+place.photos?.[2]} alt="img-2" />
                         )}
                     </div>
                 </div>
