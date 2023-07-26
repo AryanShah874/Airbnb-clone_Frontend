@@ -11,7 +11,7 @@ function Bookings(){
     const [loading, setLoading]=useState(false);
 
     useEffect(()=>{
-        fetch("http://localhost:5000/bookings", {
+        fetch("https://airbnb-clone-backend-one.vercel.app/bookings", {
             method: "GET",
             credentials: "include"
         })
@@ -41,7 +41,7 @@ function Bookings(){
                         <Link to={`/place/${booking.place._id}`} key={index} className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden">
                             {booking.place.photos?.[0] && (
                                 <div className="w-48">
-                                    <img src={"http://localhost:5000/"+booking.place.photos?.[0]} alt="mainImg" />
+                                    <img src={"https://airbnb-clone-backend-one.vercel.app/"+booking.place.photos?.[0]} alt="mainImg" />
                                 </div>
                             )}
                             <div className="py-3 pr-3 grow">

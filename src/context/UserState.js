@@ -8,7 +8,7 @@ const UserState=(props)=>{
 
     useEffect(()=>{
         if(!userInfo){
-            fetch("http://localhost:5000/profile", {   //if not useEffect then would have made the function async and const response=await fetch();
+            fetch("https://airbnb-clone-backend-one.vercel.app/profile", {   //if not useEffect then would have made the function async and const response=await fetch();
                 method: "GET", 
                 credentials: "include"
             }).then((response)=>{
