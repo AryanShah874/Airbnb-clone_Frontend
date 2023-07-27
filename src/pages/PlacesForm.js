@@ -99,8 +99,6 @@ function PlacesForm(){
                     theme: "colored",
                 });
             }
-        
-
         }
         else{
             toast.warn('Url Required', {
@@ -164,9 +162,13 @@ function PlacesForm(){
 
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
-
-        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
-            method: 'DELETE'
+// https://api.cloudinary.com/v1_1/demo/image/upload
+        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/delete_by_token", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({public_id: publicId})
         });
 
         if(response.ok){
