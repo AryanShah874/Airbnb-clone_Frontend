@@ -94,8 +94,6 @@ function PlacesForm(){
             body: formData
         });
 
-        console.log(response);
-
         if(!response.ok){
             toast.warn('Sorry, something went wrong.', {
                 position: "top-center",
@@ -108,8 +106,10 @@ function PlacesForm(){
                 theme: "colored",
             });
         }
+
+        const {secure_url}=await response.json();
         
-        setForm({...form, [form.photos]: form.photos.push(response.secure_url)});
+        setForm({...form, [form.photos]: form.photos.push(secure_url)});
         // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
         //     method: 'POST', 
         //     body: formData
