@@ -109,6 +109,7 @@ function PlacesForm(){
             });
         }
         
+        setForm({...form, [form.photos]: form.photos.push(response.secure_url)});
         // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
         //     method: 'POST', 
         //     body: formData
@@ -116,7 +117,6 @@ function PlacesForm(){
 
         // if(response.ok){
         //     const photoUrl=await response.text();
-        //     setForm({...form, [form.photos]: form.photos.push(photoUrl)});
         // }
     }
 
