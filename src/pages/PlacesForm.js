@@ -166,8 +166,7 @@ function PlacesForm(){
         const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + btoa('457433856849257: 60btJdMtmou0FElnGefzcDxHLc0')
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({public_id: publicId})
         });
