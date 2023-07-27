@@ -87,16 +87,24 @@ function PlacesForm(){
     const uploadPhoto=async (event)=>{
         const formData=new FormData();
         formData.append('photo', event.target.files[0]);
-        
-        const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
-            method: 'POST', 
+        formData.append('upload_preset', "airbnb");
+
+        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
+            method: 'POST',
             body: formData
         });
 
-        if(response.ok){
-            const photoUrl=await response.text();
-            setForm({...form, [form.photos]: form.photos.push(photoUrl)});
-        }
+        console.log(response);
+        
+        // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
+        //     method: 'POST', 
+        //     body: formData
+        // });
+
+        // if(response.ok){
+        //     const photoUrl=await response.text();
+        //     setForm({...form, [form.photos]: form.photos.push(photoUrl)});
+        // }
     }
 
     const deletePhoto=async (index)=>{
