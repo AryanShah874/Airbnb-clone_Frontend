@@ -83,8 +83,23 @@ function PlacesForm(){
             });
 
             const {secure_url}=await response.json();
+
+            if(response.ok){
+                setForm({...form, [form.photos]: form.photos.push(secure_url)});
+            }
+            else{
+                toast.warn('Sorry, something went wrong.', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
         
-            setForm({...form, [form.photos]: form.photos.push(secure_url)});
 
         }
         else{
@@ -114,6 +129,8 @@ function PlacesForm(){
             body: formData
         });
 
+        const {secure_url}=await response.json();
+
         if(!response.ok){
             toast.warn('Sorry, something went wrong.', {
                 position: "top-center",
@@ -126,10 +143,10 @@ function PlacesForm(){
                 theme: "colored",
             });
         }
+        else{
+            setForm({...form, [form.photos]: form.photos.push(secure_url)});
+        }
 
-        const {secure_url}=await response.json();
-        
-        setForm({...form, [form.photos]: form.photos.push(secure_url)});
 
         // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
         //     method: 'POST', 
@@ -147,11 +164,26 @@ function PlacesForm(){
 
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
-        console.log(publicId);
-        // if(response.ok){
-        //     setForm({...form, [form.photos]: form.photos.splice(index, 1)})
-        // }
-        
+
+        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
+            method: 'DELETE'
+        });
+
+        if(response.ok){
+            setForm({...form, [form.photos]: form.photos.splice(index, 1)})
+        }
+        else{
+            toast.warn('Sorry, something went wrong.', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });   
+        }
     }
 
     const handleCheckbox=(event)=>{
