@@ -169,6 +169,8 @@ function PlacesForm(){
         const signaturePayload = `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
         const signature = sha1(signaturePayload);
 
+        console.log(signature);
+
         const formData = new FormData();
         formData.append('public_id', publicId);
         formData.append('api_key', '457433856849257');
