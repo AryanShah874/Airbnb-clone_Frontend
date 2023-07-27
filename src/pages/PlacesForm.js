@@ -62,7 +62,8 @@ function PlacesForm(){
     
             if(response.ok){
                 const photoUrl=await response.text();
-                setForm({...form, [form.photos]: form.photos.push(photoUrl)});
+                // setForm({...form, [form.photos]: form.photos.push(photoUrl)});
+                console.log(photoUrl);
             }
         }
         else{
