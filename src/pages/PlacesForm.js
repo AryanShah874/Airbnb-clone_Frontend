@@ -52,14 +52,14 @@ function PlacesForm(){
         
         if(photoLink){
             // setForm({...form, [form.photos]: form.photos.push(photoLink)});
-            const formData=new FormData();
-            formData.append('link', photoLink);
+            // const formData=new FormData();
+            // formData.append('link', photoLink);
 
-            alert(formData);
+            // alert(formData);
             
             const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
                 method: 'POST', 
-                body: formData
+                body: photoLink
             });
     
             if(response.ok){
