@@ -32,7 +32,7 @@ function PlacesForm(){
             return;
         }
 
-        fetch("http://localhost:5000/places/"+id, {
+        fetch("https://airbnb-clone-backend-one.vercel.app/places/"+id, {
             method: 'GET'
         })
         .then((response)=>{
@@ -55,7 +55,7 @@ function PlacesForm(){
             const formData=new FormData();
             formData.append('link', photoLink);
             
-            const response=await fetch("http://localhost:5000/upload", {
+            const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
                 method: 'POST', 
                 body: formData
             });
@@ -85,7 +85,7 @@ function PlacesForm(){
         const formData=new FormData();
         formData.append('photo', event.target.files[0]);
         
-        const response=await fetch("http://localhost:5000/upload", {
+        const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
             method: 'POST', 
             body: formData
         });
@@ -97,7 +97,7 @@ function PlacesForm(){
     }
 
     const deletePhoto=async (index)=>{
-        const response=await fetch(`http://localhost:5000/deletePhoto/${form.photos[index]}`, {
+        const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${form.photos[index]}`, {
             method: 'DELETE',
 
         });
@@ -124,7 +124,7 @@ function PlacesForm(){
 
         if(id){
             //update a place
-            const response=await fetch("http://localhost:5000/places", {
+            const response=await fetch("https://airbnb-clone-backend-one.vercel.app/places", {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json",
@@ -151,7 +151,7 @@ function PlacesForm(){
         }
         else{
             //add new place
-            const response=await fetch("http://localhost:5000/places", {
+            const response=await fetch("https://airbnb-clone-backend-one.vercel.app/places", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -180,7 +180,7 @@ function PlacesForm(){
 
     //Delete functionality
     const handleClick=async()=>{
-        const response=await fetch("http://localhost:5000/places", {
+        const response=await fetch("https://airbnb-clone-backend-one.vercel.app/places", {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
@@ -235,7 +235,7 @@ function PlacesForm(){
                             return (
                                 <div className="relative h-32" key={index}>
                                     <i onClick={()=>{deletePhoto(index)}} className="fa-solid fa-xmark absolute top-1.5 right-1.5 text-black bg-white py-0.5 px-1 rounded-full cursor-pointer"></i>
-                                    <img src={"http://localhost:5000/"+link} alt={"photo"+index} className="h-full w-full object-cover rounded-2xl"/>
+                                    <img src={"https://airbnb-clone-backend-one.vercel.app/"+link} alt={"photo"+index} className="h-full w-full object-cover rounded-2xl"/>
                                 </div>
                             )
                         })  
