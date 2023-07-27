@@ -57,16 +57,35 @@ function PlacesForm(){
 
             // alert(formData);
             
-            const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
-                method: 'POST', 
-                body: photoLink
-            });
+            // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
+            //     method: 'POST', 
+            //     body: photoLink
+            // });
     
-            if(response.ok){
-                const photoUrl=await response.text();
-                setForm({...form, [form.photos]: form.photos.push(photoUrl)});
-                // console.log(photoUrl);
-            }
+            // if(response.ok){
+            //     const photoUrl=await response.text();
+            //     setForm({...form, [form.photos]: form.photos.push(photoUrl)});
+            //     // console.log(photoUrl);
+            // }
+
+            const imageData={
+                file: photoLink,
+                upload_preset: "airbnb",
+                folder: "airbnb"
+            };
+
+            const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(imageData)
+            });
+
+            const {secure_url}=await response.json();
+        
+            setForm({...form, [form.photos]: form.photos.push(secure_url)});
+
         }
         else{
             toast.warn('Url Required', {
@@ -90,7 +109,7 @@ function PlacesForm(){
         formData.append('upload_preset', "airbnb");
         formData.append('folder', 'airbnb');
 
-        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
+        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {   //No backend url required
             method: 'POST',
             body: formData
         });
@@ -111,6 +130,7 @@ function PlacesForm(){
         const {secure_url}=await response.json();
         
         setForm({...form, [form.photos]: form.photos.push(secure_url)});
+
         // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
         //     method: 'POST', 
         //     body: formData
