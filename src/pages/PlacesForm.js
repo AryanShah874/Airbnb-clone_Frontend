@@ -95,6 +95,19 @@ function PlacesForm(){
         });
 
         console.log(response);
+
+        if(!response.ok){
+            toast.warn('Sorry, something went wrong.', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
         
         // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
         //     method: 'POST', 
