@@ -168,7 +168,7 @@ function PlacesForm(){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({public_id: publicId})
+            body: JSON.stringify({token: publicId})
         });
 
         if(response.ok){
