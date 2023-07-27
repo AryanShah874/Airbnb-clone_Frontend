@@ -163,23 +163,8 @@ function PlacesForm(){
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
-        const timestamp = Math.round(new Date().getTime() / 1000);
-        const apiSecret='60btJdMtmou0FElnGefzcDxHLc0';
-
-        const signaturePayload = `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
-        const signature = sha1(signaturePayload);
-
-        console.log(signature);
-
-        const formData = new FormData();
-        formData.append('public_id', publicId);
-        formData.append('api_key', '457433856849257');
-        formData.append('api_secret', apiSecret);
-        formData.append('signature', signature);
-
-        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy`, {
-            method: 'POST',
-            body: formData
+        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
+            method: 'DELETE'
         });
 
         if(response.ok){
