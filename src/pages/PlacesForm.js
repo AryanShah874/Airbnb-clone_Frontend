@@ -64,8 +64,8 @@ function PlacesForm(){
     
             if(response.ok){
                 const photoUrl=await response.text();
-                // setForm({...form, [form.photos]: form.photos.push(photoUrl)});
-                console.log(photoUrl);
+                setForm({...form, [form.photos]: form.photos.push(photoUrl)});
+                // console.log(photoUrl);
             }
         }
         else{
@@ -238,7 +238,8 @@ function PlacesForm(){
                             return (
                                 <div className="relative h-32" key={index}>
                                     <i onClick={()=>{deletePhoto(index)}} className="fa-solid fa-xmark absolute top-1.5 right-1.5 text-black bg-white py-0.5 px-1 rounded-full cursor-pointer"></i>
-                                    <img src={"https://airbnb-clone-backend-one.vercel.app/"+link} alt={"photo"+index} className="h-full w-full object-cover rounded-2xl"/>
+                                    <img src={link} alt={"photo"+index} className="h-full w-full object-cover rounded-2xl"/>
+                                    {/* <img src={"https://airbnb-clone-backend-one.vercel.app/"+link} alt={"photo"+index} className="h-full w-full object-cover rounded-2xl"/> */}
                                 </div>
                             )
                         })  
