@@ -88,6 +88,7 @@ function PlacesForm(){
         const formData=new FormData();
         formData.append('file', event.target.files[0]);
         formData.append('upload_preset', "airbnb");
+        formData.append('folder', 'airbnb');
 
         const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
             method: 'POST',
