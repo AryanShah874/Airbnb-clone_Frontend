@@ -142,14 +142,15 @@ function PlacesForm(){
     }
 
     const deletePhoto=async (index)=>{
-        const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${form.photos[index]}`, {
-            method: 'DELETE',
+        // const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${form.photos[index]}`, {
+        //     method: 'DELETE',
 
-        });
-
-        if(response.ok){
-            setForm({...form, [form.photos]: form.photos.splice(index, 1)})
-        }
+        // });
+        const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
+        console.log(publicId);
+        // if(response.ok){
+        //     setForm({...form, [form.photos]: form.photos.splice(index, 1)})
+        // }
         
     }
 
