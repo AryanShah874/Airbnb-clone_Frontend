@@ -162,13 +162,15 @@ function PlacesForm(){
 
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
-// https://api.cloudinary.com/v1_1/demo/image/upload
+
+        const formData = new FormData();
+        formData.append('public_id', publicId);
+        formData.append('api_key', '457433856849257');
+        formData.append('api_secret', '60btJdMtmou0FElnGefzcDxHLc0');
+
         const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({public_id: publicId})
+            body: formData
         });
 
         if(response.ok){
