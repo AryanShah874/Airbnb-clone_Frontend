@@ -163,12 +163,8 @@ function PlacesForm(){
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 // https://api.cloudinary.com/v1_1/demo/image/upload
-        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/delete_by_token", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({token: publicId})
+        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}}`, {
+            method: 'DELETE'
         });
 
         if(response.ok){
