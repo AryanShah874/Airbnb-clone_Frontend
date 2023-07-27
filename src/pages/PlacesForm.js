@@ -55,7 +55,7 @@ function PlacesForm(){
             const formData=new FormData();
             formData.append('link', photoLink);
 
-            console.log(formData);
+            alert(formData);
             
             const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
                 method: 'POST', 
