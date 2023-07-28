@@ -3,7 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import AccountNav from "./AccountNav";
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
-import cloudinary from 'cloudinary';
+import cloudinary from 'cloudinary/lib/cloudinary';
 
 // Account mai my accomodation walla
 
