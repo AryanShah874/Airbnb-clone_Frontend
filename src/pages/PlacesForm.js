@@ -168,8 +168,12 @@ function PlacesForm(){
         // formData.append('public_id', publicId);
         // formData.append('api_key', "457433856849257")
 
-        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
-            method: 'DELETE'
+        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/delete_by_token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({public_id: publicId})
         });
 
         if(response.ok){
