@@ -171,25 +171,21 @@ function PlacesForm(){
             body: formData
         });
 
-        cloudinary.v2.uploader.destroy(publicId)
-        .then((res)=>{console.log(res)})
-        .catch((err)=>{console.log(err)})
-
-        // if(response.ok){
-        //     setForm({...form, [form.photos]: form.photos.splice(index, 1)})
-        // }
-        // else{
-        //     toast.warn('Sorry, something went wrong.', {
-        //         position: "top-center",
-        //         autoClose: 2000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "colored",
-        //     });   
-        // }
+        if(response.ok){
+            setForm({...form, [form.photos]: form.photos.splice(index, 1)})
+        }
+        else{
+            toast.warn('Sorry, something went wrong.', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });   
+        }
     }
 
     const handleCheckbox=(event)=>{
