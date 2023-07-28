@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import AccountNav from "./AccountNav";
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
+import cloudinary from 'cloudinary/lib/cloudinary';
 
 // Account mai my accomodation walla
 
@@ -156,6 +157,12 @@ function PlacesForm(){
         // }
     }
 
+    cloudinary.config({
+        cloud_name: "dmamth1y2",
+        api_key: "457433856849257",
+        api_secret: "60btJdMtmou0FElnGefzcDxHLc0"
+    });
+
     const deletePhoto=async (index)=>{
         // const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${form.photos[index]}`, {
         //     method: 'DELETE',
@@ -163,25 +170,29 @@ function PlacesForm(){
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
-        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
-            method: 'DELETE'
-        });
+        // const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
+        //     method: 'DELETE'
+        // });
 
-        if(response.ok){
-            setForm({...form, [form.photos]: form.photos.splice(index, 1)})
-        }
-        else{
-            toast.warn('Sorry, something went wrong.', {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });   
-        }
+        cloudinary.v2.uploader.destroy(publicId)
+        .then((res)=>{console.log(res)})
+        .catch((err)=>{console.log(err)})
+
+        // if(response.ok){
+        //     setForm({...form, [form.photos]: form.photos.splice(index, 1)})
+        // }
+        // else{
+        //     toast.warn('Sorry, something went wrong.', {
+        //         position: "top-center",
+        //         autoClose: 2000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "colored",
+        //     });   
+        // }
     }
 
     const handleCheckbox=(event)=>{
