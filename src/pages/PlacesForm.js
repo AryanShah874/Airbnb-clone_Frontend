@@ -172,6 +172,8 @@ function PlacesForm(){
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
+        console.log(publicId);
+        
         const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${publicId}`, {
             method: 'DELETE',
         });
@@ -180,6 +182,7 @@ function PlacesForm(){
             setForm({...form, [form.photos]: form.photos.splice(index, 1)})
         }
         else{
+            console.log(response);
             toast.warn('Sorry, something went wrong.', {
                 position: "top-center",
                 autoClose: 2000,
