@@ -172,37 +172,7 @@ function PlacesForm(){
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
-        // const formData=new FormData();
-        // formData.append('public_id', publicId);
-        // formData.append('api_key', "457433856849257")
-
-        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({public_id: publicId, upload_preset: "airbnb"})
-        });
-
-        // const cloudName = "dmamth1y2"; // Replace this with your Cloudinary cloud name
-        // const apiKey = "457433856849257"; // Replace this with your Cloudinary API key
-        // const apiSecret = "60btJdMtmou0FElnGefzcDxHLc0"; // Replace this with your Cloudinary API secret
-        // const timestamp = Math.floor(Date.now() / 1000);
-        // const signaturePayload = `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
-        // const signature = await sha1(signaturePayload);
-
-        // const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/delete_by_token`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         public_id: publicId,
-        //         timestamp: timestamp,
-        //         api_key: apiKey,
-        //         signature: signature
-        //     })
-        // });
+        
 
         if(response.ok){
             setForm({...form, [form.photos]: form.photos.splice(index, 1)})
