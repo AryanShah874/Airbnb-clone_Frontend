@@ -176,7 +176,7 @@ function PlacesForm(){
         // formData.append('public_id', publicId);
         // formData.append('api_key', "457433856849257")
 
-        const response=await fetch("", {
+        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
