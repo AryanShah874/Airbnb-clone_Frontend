@@ -4,6 +4,7 @@ import AccountNav from "./AccountNav";
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 
+
 // Account mai my accomodation walla
 
 function PlacesForm(){
@@ -163,13 +164,12 @@ function PlacesForm(){
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
-        const formData=new FormData();
-        formData.append('public_id', publicId);
-        formData.append('api_key', "457433856849257")
+        // const formData=new FormData();
+        // formData.append('public_id', publicId);
+        // formData.append('api_key', "457433856849257")
 
-        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy`, {
-            method: 'POST',
-            body: formData
+        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
+            method: 'DELETE'
         });
 
         if(response.ok){
