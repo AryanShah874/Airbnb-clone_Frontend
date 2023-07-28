@@ -173,7 +173,7 @@ function PlacesForm(){
         const publicId = await form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
         const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto`, {
-            method: 'DELETE',
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
