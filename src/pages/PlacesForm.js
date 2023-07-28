@@ -157,6 +157,14 @@ function PlacesForm(){
         // }
     }
 
+    async function sha1(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-1', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    }
+
     const deletePhoto=async (index)=>{
         // const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${form.photos[index]}`, {
         //     method: 'DELETE',
@@ -168,12 +176,24 @@ function PlacesForm(){
         // formData.append('public_id', publicId);
         // formData.append('api_key', "457433856849257")
 
+        const cloudName = "dmamth1y2"; // Replace this with your Cloudinary cloud name
+        const apiKey = "457433856849257"; // Replace this with your Cloudinary API key
+        const apiSecret = "60btJdMtmou0FElnGefzcDxHLc0"; // Replace this with your Cloudinary API secret
+        const timestamp = Math.floor(Date.now() / 1000);
+        const signaturePayload = `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
+        const signature = await sha1(signaturePayload);
+
         const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/delete_by_token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({public_id: publicId})
+            body: JSON.stringify({
+                public_id: publicId,
+                timestamp: timestamp,
+                api_key: apiKey,
+                signature: signature
+            })
         });
 
         if(response.ok){
