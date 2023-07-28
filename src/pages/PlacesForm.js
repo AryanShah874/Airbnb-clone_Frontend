@@ -3,7 +3,6 @@ import { Navigate, useParams } from "react-router-dom";
 import AccountNav from "./AccountNav";
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
-import cloudinary from 'cloudinary/lib/cloudinary';
 
 // Account mai my accomodation walla
 
@@ -157,12 +156,6 @@ function PlacesForm(){
         // }
     }
 
-    cloudinary.config({
-        cloud_name: "dmamth1y2",
-        api_key: "457433856849257",
-        api_secret: "60btJdMtmou0FElnGefzcDxHLc0"
-    });
-
     const deletePhoto=async (index)=>{
         // const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${form.photos[index]}`, {
         //     method: 'DELETE',
@@ -170,9 +163,13 @@ function PlacesForm(){
         // });
         const publicId = form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
-        // const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy/${publicId}`, {
-        //     method: 'DELETE'
-        // });
+        const formData=new FormData();
+        formData.append('public_id', publicId);
+
+        const response=await fetch(`https://api.cloudinary.com/v1_1/dmamth1y2/image/destroy`, {
+            method: 'POST',
+            body: formData
+        });
 
         cloudinary.v2.uploader.destroy(publicId)
         .then((res)=>{console.log(res)})
