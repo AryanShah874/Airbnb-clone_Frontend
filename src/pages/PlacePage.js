@@ -49,7 +49,7 @@ function PlacePage(){
                     {place?.photos?.length>0 && (
                         place.photos.map((photo, index)=>{
                             return(
-                                <img src={"https://airbnb-clone-backend-one.vercel.app/"+photo} alt={"photo "+index} className="h-96 w-2/3 m-auto"/>
+                                <img src={+photo} alt={"photo "+index} className="h-96 w-2/3 m-auto"/>
                             ); 
                         })
                     )}
@@ -68,16 +68,16 @@ function PlacePage(){
 
                     <div>
                         {place.photos?.[0] && (
-                            <img className="rounded-l-2xl h-full w-full" src={"https://airbnb-clone-backend-one.vercel.app/"+place.photos?.[0]} alt="main" />
+                            <img className="rounded-l-2xl h-full w-full" src={place.photos?.[0]} alt="main" />
                         )}
                     </div>
 
                     <div className="grid gap-4">
                         {place.photos?.[1] && (
-                            <img className="h-72 w-full rounded-tr-2xl" src={"https://airbnb-clone-backend-one.vercel.app/"+place.photos?.[1]} alt="img-1" />
+                            <img className="h-72 w-full rounded-tr-2xl" src={place.photos?.[1]} alt="img-1" />
                         )}
                         {place.photos?.[2] && (
-                            <img className="h-72 w-full rounded-br-2xl" src={"https://airbnb-clone-backend-one.vercel.app/"+place.photos?.[2]} alt="img-2" />
+                            <img className="h-72 w-full rounded-br-2xl" src={+place.photos?.[2]} alt="img-2" />
                         )}
                     </div>
                 </div>

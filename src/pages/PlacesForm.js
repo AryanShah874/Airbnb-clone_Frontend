@@ -99,32 +99,35 @@ function PlacesForm(){
     }
 
     const uploadPhoto=async (event)=>{
-        const formData=new FormData();
-        formData.append('file', event.target.files[0]);
-        formData.append('upload_preset', "airbnb");   //unsigned preset required in order to use cloudinary client-side url
-        formData.append('folder', 'airbnb');
-        
-        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {   //No backend url and multer(as multer is used to temporarily store image get its path which is sent to cloudinary) required
-            method: 'POST',
-            body: formData
-        });
 
-        
-        if(response.ok){
-            const {secure_url}=await response.json();
-            setForm({...form, [form.photos]: form.photos.push(secure_url)});
-        }
-        else{
-            toast.warn('Sorry, something went wrong.', {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
+        if(event.target.files[0]){
+            const formData=new FormData();
+            formData.append('file', event.target.files[0]);
+            formData.append('upload_preset', "airbnb");   //unsigned preset required in order to use cloudinary client-side url
+            formData.append('folder', 'airbnb');
+            
+            const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {   //No backend url and multer(as multer is used to temporarily store image get its path which is sent to cloudinary) required
+                method: 'POST',
+                body: formData
             });
+    
+            
+            if(response.ok){
+                const {secure_url}=await response.json();
+                setForm({...form, [form.photos]: form.photos.push(secure_url)});
+            }
+            else{
+                toast.warn('Sorry, something went wrong.', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
         }
     }
 

@@ -40,7 +40,7 @@ function Places(){
 
                             <div className="h-32 w-32 bg-gray-300 shrink-0">
                                 {place.photos.length>0 && (
-                                    <img src={"https://airbnb-clone-backend-one.vercel.app/"+place.photos[0]} alt="main" className="h-full w-full"/>
+                                    <img src={place.photos[0]} alt="main" className="h-full w-full"/>
                                 )}
                             </div>
 

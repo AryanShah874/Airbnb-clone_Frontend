@@ -49,7 +49,7 @@ function Home(){
 
                         <div className="bg-gray-500 rounded-2xl mb-2">
                             {place.photos?.[0] && (                     //.? => means it may or may not exists.
-                                <img src={"https://airbnb-clone-backend-one.vercel.app/"+place.photos?.[0]} alt={"photo "+index} className="h-full w-full aspect-square object-cover rounded-2xl"/>
+                                <img src={place.photos?.[0]} alt={"photo "+index} className="h-full w-full aspect-square object-cover rounded-2xl"/>
                             )}
                         </div>
                         
