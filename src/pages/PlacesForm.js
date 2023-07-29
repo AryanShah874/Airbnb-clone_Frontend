@@ -57,7 +57,7 @@ function PlacesForm(){
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({photo: photoLink})
+                body: JSON.stringify({file: photoLink})
             });
 
             const {secure_url}=await response.json();
@@ -110,7 +110,7 @@ function PlacesForm(){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({photo: event.target.files[0].name})
+            body: JSON.stringify({file: event.target.files[0].name})
         });
 
         const {secure_url}=await response.json();
