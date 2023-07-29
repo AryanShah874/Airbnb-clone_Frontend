@@ -90,7 +90,9 @@ function PlacePage(){
                 <div>
                     <div className="mt-4">
                         <h2 className="text-2xl font-semibold">Description</h2>
-                        {place.description}
+                        <div className="line-clamp-6">
+                            {place.description}
+                        </div>
                     </div>
                     <div className="text-gray-500 my-4">
                         Check-in: {place.checkIn} <br />
