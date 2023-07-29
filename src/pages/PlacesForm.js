@@ -83,23 +83,24 @@ function PlacesForm(){
                 body: JSON.stringify({file: photoLink})
             });
 
-            const {secure_url}=await response.json();
+            const {result}=await response.json();
 
-            if(response.ok){
-                setForm({...form, [form.photos]: form.photos.push(secure_url)});
-            }
-            else{
-                toast.warn('Sorry, something went wrong.', {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-            }
+            console.log(result);
+            // if(response.ok){
+            //     setForm({...form, [form.photos]: form.photos.push(secure_url)});
+            // }
+            // else{
+            //     toast.warn('Sorry, something went wrong.', {
+            //         position: "top-center",
+            //         autoClose: 2000,
+            //         hideProgressBar: false,
+            //         closeOnClick: true,
+            //         pauseOnHover: true,
+            //         draggable: true,
+            //         progress: undefined,
+            //         theme: "colored",
+            //     });
+            // }
         }
         else{
             toast.warn('Url Required', {
