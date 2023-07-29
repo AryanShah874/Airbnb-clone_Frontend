@@ -49,7 +49,7 @@ function PlacePage(){
                     {place?.photos?.length>0 && (
                         place.photos.map((photo, index)=>{
                             return(
-                                <img src={+photo} alt={"photo "+index} className="h-96 w-2/3 m-auto"/>
+                                <img src={photo} alt={"photo "+index} className="h-96 w-2/3 m-auto"/>
                             ); 
                         })
                     )}
@@ -77,7 +77,7 @@ function PlacePage(){
                             <img className="h-72 w-full rounded-tr-2xl" src={place.photos?.[1]} alt="img-1" />
                         )}
                         {place.photos?.[2] && (
-                            <img className="h-72 w-full rounded-br-2xl" src={+place.photos?.[2]} alt="img-2" />
+                            <img className="h-72 w-full rounded-br-2xl" src={place.photos?.[2]} alt="img-2" />
                         )}
                     </div>
                 </div>
