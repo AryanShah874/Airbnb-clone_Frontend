@@ -104,7 +104,7 @@ function PlacesForm(){
         //     method: 'POST',
         //     body: formData
         // });
-        console.log(event.target.files)
+        console.log(event.target)
         const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {   //No backend url required
             method: 'POST',
             headers: {
