@@ -46,7 +46,7 @@ function Places(){
 
                             <div>
                                 <h2 className="text-xl">{place.name}</h2>
-                                <p className="text-sm mt-2">{place.description}</p>
+                                <p className="text-sm mt-2 line-clamp-5">{place.description}</p>
                             </div>
             
                         </Link>
