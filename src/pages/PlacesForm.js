@@ -54,7 +54,10 @@ function PlacesForm(){
         if(photoLink){
             const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
                 method: 'POST',
-                body: photoLink
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({photo: photoLink})
             });
 
             const {secure_url}=await response.json();
@@ -104,7 +107,10 @@ function PlacesForm(){
 
         const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {   //No backend url required
             method: 'POST',
-            body: event.target.files[0]
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({photo: event.target.files[0]})
         });
 
         const {secure_url}=await response.json();
