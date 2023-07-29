@@ -75,7 +75,7 @@ function PlacesForm(){
             //     folder: "airbnb"
             // };
 
-            const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
+            const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
