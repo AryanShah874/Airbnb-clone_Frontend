@@ -52,29 +52,6 @@ function PlacesForm(){
         event.preventDefault();
         
         if(photoLink){
-            // setForm({...form, [form.photos]: form.photos.push(photoLink)});
-            // const formData=new FormData();
-            // formData.append('link', photoLink);
-
-            // alert(formData);
-            
-            // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
-            //     method: 'POST', 
-            //     body: photoLink
-            // });
-    
-            // if(response.ok){
-            //     const photoUrl=await response.text();
-            //     setForm({...form, [form.photos]: form.photos.push(photoUrl)});
-            //     // console.log(photoUrl);
-            // }
-
-            // const imageData={
-            //     file: photoLink,
-            //     upload_preset: "airbnb",
-            //     folder: "airbnb"
-            // };
-
             const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
                 method: 'POST',
                 headers: {
@@ -83,24 +60,23 @@ function PlacesForm(){
                 body: JSON.stringify({file: photoLink})
             });
 
-            const res=await response.json();
+            const {secure_url}=await response.json();
 
-            console.log(res);
-            // if(response.ok){
-            //     setForm({...form, [form.photos]: form.photos.push(secure_url)});
-            // }
-            // else{
-            //     toast.warn('Sorry, something went wrong.', {
-            //         position: "top-center",
-            //         autoClose: 2000,
-            //         hideProgressBar: false,
-            //         closeOnClick: true,
-            //         pauseOnHover: true,
-            //         draggable: true,
-            //         progress: undefined,
-            //         theme: "colored",
-            //     });
-            // }
+            if(response.ok){
+                setForm({...form, [form.photos]: form.photos.push(secure_url)});
+            }
+            else{
+                toast.warn('Sorry, something went wrong.', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
         }
         else{
             toast.warn('Url Required', {
