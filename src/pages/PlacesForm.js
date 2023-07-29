@@ -69,18 +69,18 @@ function PlacesForm(){
             //     // console.log(photoUrl);
             // }
 
-            const imageData={
-                file: photoLink,
-                upload_preset: "airbnb",
-                folder: "airbnb"
-            };
+            // const imageData={
+            //     file: photoLink,
+            //     upload_preset: "airbnb",
+            //     folder: "airbnb"
+            // };
 
             const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(imageData)
+                body: JSON.stringify({file: photoLink})
             });
 
             const {secure_url}=await response.json();
@@ -145,31 +145,9 @@ function PlacesForm(){
         else{
             setForm({...form, [form.photos]: form.photos.push(secure_url)});
         }
-
-
-        // const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
-        //     method: 'POST', 
-        //     body: formData
-        // });
-
-        // if(response.ok){
-        //     const photoUrl=await response.text();
-        // }
-    }
-
-    async function sha1(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest('SHA-1', msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-        return hashHex;
     }
 
     const deletePhoto=async (index)=>{
-        // const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto/${form.photos[index]}`, {
-        //     method: 'DELETE',
-
-        // });
         const publicId = await form.photos[index].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '');
 
         const response=await fetch(`https://airbnb-clone-backend-one.vercel.app/deletePhoto`, {
