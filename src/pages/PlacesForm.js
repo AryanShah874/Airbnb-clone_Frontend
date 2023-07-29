@@ -54,10 +54,7 @@ function PlacesForm(){
         if(photoLink){
             const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({file: photoLink})
+                body: photoLink
             });
 
             const {secure_url}=await response.json();
@@ -95,14 +92,19 @@ function PlacesForm(){
     }
 
     const uploadPhoto=async (event)=>{
-        const formData=new FormData();
-        formData.append('file', event.target.files[0]);
-        formData.append('upload_preset', "airbnb");
-        formData.append('folder', 'airbnb');
+        // const formData=new FormData();
+        // formData.append('file', event.target.files[0]);
+        // formData.append('upload_preset', "airbnb");
+        // formData.append('folder', 'airbnb');
 
-        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {   //No backend url required
+        // const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {   //No backend url required
+        //     method: 'POST',
+        //     body: formData
+        // });
+
+        const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {   //No backend url required
             method: 'POST',
-            body: formData
+            body: event.target.files[0]
         });
 
         const {secure_url}=await response.json();
