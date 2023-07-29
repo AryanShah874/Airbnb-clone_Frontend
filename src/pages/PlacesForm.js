@@ -83,9 +83,9 @@ function PlacesForm(){
                 body: JSON.stringify({file: photoLink})
             });
 
-            const {result}=await response.json();
+            const res=await response.json();
 
-            console.log(result);
+            console.log(res);
             // if(response.ok){
             //     setForm({...form, [form.photos]: form.photos.push(secure_url)});
             // }
