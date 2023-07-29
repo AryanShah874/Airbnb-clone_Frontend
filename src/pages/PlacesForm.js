@@ -52,12 +52,16 @@ function PlacesForm(){
         event.preventDefault();
         
         if(photoLink){
-            const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {
+
+            const formData=new FormData();
+            formData.append('file', photoLink);
+            formData.append('upload_preset', 'airbnb');
+            formData.append('folder', 'airbnb');
+
+
+            const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({file: photoLink})
+                body: formData
             });
 
             const {secure_url}=await response.json();
@@ -95,30 +99,22 @@ function PlacesForm(){
     }
 
     const uploadPhoto=async (event)=>{
-        // const formData=new FormData();
-        // formData.append('file', event.target.files[0]);
-        // formData.append('upload_preset', "airbnb");
-        // formData.append('folder', 'airbnb');
-
-        // const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {   //No backend url required
-        //     method: 'POST',
-        //     body: formData
-        // });
-        const file=event.target.files[0];
-
-        const filepath=URL.createObjectURL(file);
-
-        const response=await fetch("https://airbnb-clone-backend-one.vercel.app/upload", {   //No backend url required
+        const formData=new FormData();
+        formData.append('file', event.target.files[0]);
+        formData.append('upload_preset', "airbnb");   //unsigned preset required in order to use cloudinary client-side url
+        formData.append('folder', 'airbnb');
+        
+        const response=await fetch("https://api.cloudinary.com/v1_1/dmamth1y2/image/upload", {   //No backend url and multer(as multer is used to temporarily store image get its path which is sent to cloudinary) required
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({file: filepath})
+            body: formData
         });
 
-        const {secure_url}=await response.json();
-
-        if(!response.ok){
+        
+        if(response.ok){
+            const {secure_url}=await response.json();
+            setForm({...form, [form.photos]: form.photos.push(secure_url)});
+        }
+        else{
             toast.warn('Sorry, something went wrong.', {
                 position: "top-center",
                 autoClose: 2000,
@@ -129,9 +125,6 @@ function PlacesForm(){
                 progress: undefined,
                 theme: "colored",
             });
-        }
-        else{
-            setForm({...form, [form.photos]: form.photos.push(secure_url)});
         }
     }
 
