@@ -83,7 +83,7 @@ function BookingWidget(props){
     }
 
     return(
-        <div className="flex flex-col justify-center bg-white shadow-xl shadow-gray-400 p-4 rounded-2xl h-auto">
+        <div className="flex flex-col justify-center bg-white shadow-xl shadow-gray-400 p-4 rounded-2xl h-96">
             <div className="text-2xl">
                 &#8377;{props.place.price} per night
             </div>
