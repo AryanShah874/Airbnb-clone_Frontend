@@ -15,7 +15,8 @@ function Home(){
         fetch("https://airbnb-clone-backend-one.vercel.app/allPlaces" , {
             method: 'GET'
         })
-        .then((response)=>{return response.json()})
+        .then((response)=>{
+            return response.json()})
         .then((data)=>{
             setLoading(true);
             if(filter){
@@ -39,6 +40,28 @@ function Home(){
     if(!loading){
         return <Loader />
     }
+
+    let noofrows=places.length/3, j=0;
+    for(let i=0; i<noofrows; i++){
+        console.log(places[j]);
+        j++;
+        console.log(places[j]);
+        j++;
+        console.log(places[j]);
+        j++;
+        //br
+
+        if(i===noofrows-1){
+            for(let k=j; k<places.length; k++){
+                console.log(places[j]);
+                j++;
+            }
+        }
+    }
+
+    // for(let i=0; i<places.length%3; i++){
+    //     console.log(places[j]);
+    // }
 
 
     return(
