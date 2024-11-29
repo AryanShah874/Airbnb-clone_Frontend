@@ -12,7 +12,7 @@ function Footer(){
 
                 <a href="mailto:pranavrathod121425@gmail.com" target="_blank" rel="noreferrer"><i className="fa-solid fa-envelope"></i></a>
                 <a href="https://github.com/Pranav-0735" target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/pranav-rathod-821796227" target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a> */}
+                <a href="https://www.linkedin.com/in/pranav-rathod-821796227" target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin"></i></a> 
                 
             </div>  
         </footer>
